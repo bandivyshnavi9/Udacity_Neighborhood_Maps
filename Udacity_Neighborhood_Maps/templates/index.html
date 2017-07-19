@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	<title>Resturants in Neighborhood</title>
+	<span id="error" data-bind="html: errormessage"></span>
+</head>
+<body>
+	<main>
+		<div class="col-4" id="subcontainer" data-bind="visible: subcontainer">
+			<div class="row">
+				<div class="col-8">
+					<h3 class="left-pad">Food.. Food..</h3>
+				</div>
+				<div class="col-4">
+					<button class="cross" data-bind="visible: cross, click: crossclick">&#735;</button>
+				</div>
+			</div>
+			<div>
+				<input type="text" data-bind="textInput: filter"
+				placeholder="Enter the location to filter the list" />
+				<div class="listcontainer">
+					<ul data-bind="foreach: filteredLocations">
+						<li data-bind="text: $data.name,
+						click: $parent.infowindowclick"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-12">
+			<button class="hamburger" id="hamburger" data-bind="click: hamburgerclick, visible: hamburger">&#9776;</button>
+			<div id="map"></div>
+		</div>
+	</main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script src="{{url_for('static',filename='js/knockout-3.2.0.js')}}"></script>
+<script src="{{url_for('static',filename='js/app.js')}}"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBRZIdaRwt0-jKzFWpk0gCV8PmYp_f4CeY&v=3&callback=initMap" onerror="maploadError()">
+    </script>
+</body>
+</html>
